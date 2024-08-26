@@ -20,8 +20,8 @@ function heun_step!(sys::TimeSeries,params::Params,noise::TimeSeries,Δt,i::Int)
     k2_y = (y[i] + k1_y*Δt)*(-c + f*(x[i] + k1_x*Δt) + (ϵ_y^2)/2)
 
     # New variables
-    new_x = x[i] +(k1_x + k2_x)*0.5*Δt + ϵ_x*x[i]*ΔW_x[i]
-    new_y = y[i] + (k1_y + k2_y)*0.5*Δt - ϵ_y*y[i]*ΔW_y[i]
+    new_x = x[i] + (k1_x + k2_x)*0.5*Δt + ϵ_x*x[i]*ΔW_x[i]
+    new_y = y[i] + (k1_y + k2_y)*0.5*Δt + ϵ_y*y[i]*ΔW_y[i]
 
     # Update variables
     if new_x < 0
