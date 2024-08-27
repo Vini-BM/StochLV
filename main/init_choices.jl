@@ -4,18 +4,19 @@ using StochLV.Plotting
 using Plots
 
 """
-Integrates the system and plots results for different choices in parameters.
-Noise intensity and initial conditions are kept fixed.
+Integrates the system and plots results for different choices in initial conditions.
+Deterministic parameters and noise intensity are kept fixed.
 """
 
 # Deterministic parameters
-params_list = [[1.5,0.1,0.25,0.01],
-                [2.5,0.1,0.5,0.05],
-                [2.0,0.15,0.5,0.01]]
+a = 2.0
+b = 0.1
+c = 0.25
+f = 0.1
 
 # Noise scale
 ϵ_x = 0.01
-ϵ_y = 0.01
+ϵ_y = 0.02
 
 # Integration parameters
 Δt = 0.01
@@ -23,12 +24,11 @@ tmax = 1000
 N = 50 # number of realizations
 
 # Initial conditions
-x0 = 40
-y0 = 20
+init_list = [[40,60],[30,20],[3,18],[c/f,a/b]]
 
 # Integration
-for choice in params_list
-    a, b, c, f = choice
+for choice in init_list
+    x0, y0 = choice
     params = Params(a=a,b=b,c=c,f=f,ϵ_x=ϵ_x,ϵ_y=ϵ_y)
     mean_sys, var_sys = Integration.ensemble(x0,y0,params,tmax,Δt,N)
     ps_plot = Plotting.phase_space(mean_sys,params,x0,y0,tmax,Δt,N)
