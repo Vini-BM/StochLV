@@ -23,7 +23,7 @@ function phase_space(sys::TimeSeries,params::Params,x0,y0,tmax,Δt,N,gif=false)
             left_margin=5mm, bottom_margin=5mm, top_margin=5mm,
             tickfontsize=11, guidefontsize=15, size=(1000,800))
         plot!(x, y, linez=t, color=:thermal, label=init, legendfont=font(12))
-        scatter!([x_ast], [y_ast], color=:red, label=L"$(x^{\ast},y^{\ast})$", legendfont=font(12))
+        scatter!([x_ast], [y_ast], color=:red, label=L"$(x^{\ast},y^{\ast}) = (%$(x_ast),%$(y_ast))$", legendfont=font(12))
         return p
     else
     # Animation
@@ -34,7 +34,7 @@ function phase_space(sys::TimeSeries,params::Params,x0,y0,tmax,Δt,N,gif=false)
             xlim=(min(x...),max(x...)), ylim=(min(y...),max(y...)), legend=false, 
             left_margin=4mm, bottom_margin=4mm, top_margin=5mm,
             tickfontsize=11, guidefontsize=15, size=(1000,800))
-        scatter!([x_ast], [y_ast], color=:red, label=L"$(x^{\ast},y^{\ast})$", legendfont=font(12))
+        scatter!([x_ast], [y_ast], color=:red, label=L"$(x^{\ast},y^{\ast}) = (%$(x_ast),%$(y_ast))$", legendfont=font(12))
         plot!(x[1:i], y[1:i], linez=t, color=:thermal)
         i+=500
     end
